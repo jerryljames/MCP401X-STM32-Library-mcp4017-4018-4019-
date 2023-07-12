@@ -27,12 +27,12 @@
 #ifndef MCP401X_H_
 #define MCP401X_H_
 
-#include "stm32l4xx_hal.h"			//Change here acc to STM32 series used
+#include "stm32l4xx_hal.h"					//Change here acc to STM32 series used
 
-#define MCP401XADDR  		(0x2F<<1)   //Default address for MCP401X IC, Table 5-2 of Datasheet
-#define Rw					100         //Wiper Resistance, Table 6-4 of Datasheet
-#define MAXSTEP      		127         //127 steps for MCP4017/18/19
-#define MAXRESISTANCE    	10000       //Value is 10K
+#define MCP401XADDR  		(0x2F<<1)  		//Default address for MCP401X IC, Table 5-2 of Datasheet
+#define Rw					100       		//Wiper Resistance, Table 6-4 of Datasheet
+#define MAXSTEP      		127       		//127 steps for MCP4017/18/19
+#define MAXRESISTANCE    	10000     		//Change here acc to Value of MCP401X
 
 
 void SetStep(uint8_t *step);

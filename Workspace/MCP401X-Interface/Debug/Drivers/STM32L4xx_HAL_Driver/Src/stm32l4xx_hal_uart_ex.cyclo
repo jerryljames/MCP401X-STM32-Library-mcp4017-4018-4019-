@@ -6,6 +6,7 @@ stm32l4xx_hal_uart_ex.c:439:19:HAL_MultiProcessorEx_AddressLength_Set	2
 stm32l4xx_hal_uart_ex.c:477:19:HAL_UARTEx_StopModeWakeUpSourceConfig	4
 stm32l4xx_hal_uart_ex.c:532:19:HAL_UARTEx_EnableStopMode	3
 stm32l4xx_hal_uart_ex.c:551:19:HAL_UARTEx_DisableStopMode	3
-stm32l4xx_hal_uart_ex.c:765:19:HAL_UARTEx_ReceiveToIdle	20
+stm32l4xx_hal_uart_ex.c:765:19:HAL_UARTEx_ReceiveToIdle	21
 stm32l4xx_hal_uart_ex.c:890:19:HAL_UARTEx_ReceiveToIdle_IT	8
 stm32l4xx_hal_uart_ex.c:952:19:HAL_UARTEx_ReceiveToIdle_DMA	8
+stm32l4xx_hal_uart_ex.c:1015:13:UARTEx_Wakeup_AddressConfig	1

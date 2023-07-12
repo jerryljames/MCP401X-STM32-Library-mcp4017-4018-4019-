@@ -96,15 +96,15 @@ int main(void)
 	uint8_t step = 0;
 	uint32_t Rwb;
 
-	SetStep(&stepBuf[0]);
+	SetStep(&stepBuf[0]);			//Set Min value Resistance
 	step = ReadStep();
 	//	HAL_Delay(5000);
 
-	SetStep(&stepBuf[1]);
+	SetStep(&stepBuf[1]);			//Set Middle value Resistance
 	step = ReadStep();
 	//  HAL_Delay(5000);
 
-	SetStep(&stepBuf[2]);
+	SetStep(&stepBuf[2]);			//Set Max value Resistance
 	step = ReadStep();
 	//	HAL_Delay(5000);
 
