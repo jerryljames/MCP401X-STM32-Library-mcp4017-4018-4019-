@@ -2,8 +2,11 @@
 
 Library and example to interface MCP401X series (MCP4017/4018/4019) digital potentiometers
 
+![](Img.jpg)
 
-## Connection Diagram
+## Getting Started
+
+### Connection Diagram
 
 Tested on NUCLEO-L433RC-P with STM32L433RCT6PU IC. Vcc = 3.3V
 
@@ -19,3 +22,5 @@ https://www.st.com/en/evaluation-tools/nucleo-l433rc-p.html
 Measuring Resistance will depend on which MCP401X IC is being used. 
 MCP4017 and MCP4019 are Rheostats, MCP4018 is a Potentiometer. Check Datasheet for pinouts.
 https://ww1.microchip.com/downloads/en/DeviceDoc/22147a.pdf
+
+![](STM32_Connection.png)
