@@ -1,0 +1,4 @@
+mcp401x.c:36:6:SetStep	1
+mcp401x.c:45:5:ReadStep	1
+mcp401x.c:56:6:SetResistance	2
+mcp401x.c:70:5:ReadResistance	1

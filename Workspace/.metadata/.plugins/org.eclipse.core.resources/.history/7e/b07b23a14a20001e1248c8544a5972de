@@ -1,0 +1,89 @@
+/*
+ *******************************************************************************
+ * MIT License
+ *
+ * Copyright (c) 2023 Jerryl James
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *******************************************************************************
+ */
+
+#include "mcp401x.h"
+
+extern I2C_HandleTypeDef hi2c1;
+
+
+/**
+  * @brief  Set step value. Range 0 - 127
+  * @retval None
+  */
+void SetStep(uint8_t *step)
+{
+	HAL_I2C_Master_Transmit(&hi2c1, MCP401XADDR, step, 1, HAL_MAX_DELAY);
+}
+
+/**
+  * @brief  Read step value. Range 0 - 127
+  * @retval int
+  */
+int ReadStep(void)
+{
+	uint8_t tempBuf[1] = {0};
+	HAL_I2C_Master_Receive(&hi2c1, MCP401XADDR, tempBuf, 1, HAL_MAX_DELAY);
+	return *tempBuf;
+}
+
+/**
+  * @brief  Set Resistance value, Rwb. Rwb = [(Rab * N) / 127] + RW
+  * @retval None
+  */
+void SetResistance(double Rwb)
+{
+	uint8_t step = (int)(((MAXSTEP * (Rwb - Rw)) / MAXRESISTANCE) + (Rwb * 2/ 1000));
+	if(step > 127)
+	{
+		step = 127;
+	}
+	SetStep(&step);
+}
+//////////////////////////////////////////////////////////////////////////////
+///*
+//	Calculates the number of steps to send based on a desired resistance
+//*/
+//////////////////////////////////////////////////////////////////////////////
+//void setResistance(double Rout)
+//{
+//	uint8_t tempsteps = (int)((_maxSteps * (Rout - WIPEROHMS)) / _maxOhm);
+//	setSteps(tempsteps);
+//}
+//
+///////////////////////////////////////////////////////////////////////////////
+///*
+//	A way to calculate the resistance since most of these potentiometers loose settings
+//	at power down, they generally default to their midrange
+//*/
+///////////////////////////////////////////////////////////////////////////////
+//float calcResistance()
+//{
+//	//float Rout;
+//	//Rout = ((_currentStep / _maxSteps) * _maxOhm) + WIPEROHMS;
+//	return _currentRout;
+//}
+
+

@@ -1,0 +1,67 @@
+
+/**
+ 
+  This is a free software under the GNU license, you can redistribute it and/or modify it under the terms
+  of the GNU General Public License version 3 as published by the Free Software Foundation.
+  This software library is shared with public for educational purposes, without WARRANTY and Author is not liable for any damages caused directly
+  or indirectly by this software, read more about this on the GNU General Public License.
+  ***************************************************************************************************************
+*/
+
+#include "mcp401x.h"
+//#include "stm32l4xx_hal.h"
+
+
+extern I2C_HandleTypeDef hi2c1;
+////////////////////////////////////////////////////////////////////////////
+/*
+	Initialize MCP401X
+*/
+////////////////////////////////////////////////////////////////////////////
+void MCP401X_Init(int maxSteps, float maxOhms)
+{
+  _maxSteps = maxSteps;
+  _currentStep = 0;
+  _currentRout = 0.0;
+  _maxOhm = maxOhms;
+}
+
+////////////////////////////////////////////////////////////////////////////
+/*
+	Sets the resistance of the digital pot by sending a number of steps
+*/
+////////////////////////////////////////////////////////////////////////////
+void setSteps(int steps)
+{
+	_currentStep = steps;
+	float temp1 = (float)steps / _maxSteps;
+	float temp2 = temp1 * _maxOhm;
+	_currentRout = temp2 + WIPEROHMS;
+	HAL_I2C_Mem_Write(&hi2c1, MCP401XADDRESS, 0x00, 1, _currentStep, 1, 1000);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+///*
+//	Calculates the number of steps to send based on a desired resistance
+//*/
+//////////////////////////////////////////////////////////////////////////////
+//void setResistance(double Rout)
+//{
+//	uint8_t tempsteps = (int)((_maxSteps * (Rout - WIPEROHMS)) / _maxOhm);
+//	setSteps(tempsteps);
+//}
+//
+///////////////////////////////////////////////////////////////////////////////
+///*
+//	A way to calculate the resistance since most of these potentiometers loose settings
+//	at power down, they generally default to their midrange
+//*/
+///////////////////////////////////////////////////////////////////////////////
+//float calcResistance()
+//{
+//	//float Rout;
+//	//Rout = ((_currentStep / _maxSteps) * _maxOhm) + WIPEROHMS;
+//	return _currentRout;
+//}
+
+
