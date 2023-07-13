@@ -32,10 +32,10 @@ I have used the internal pullups of STM32 for I2C
     .
     ├── Images
     ├── Workspace 						# STM32CubeIDE Workspace          
-    │   └── MCP401X-Interface 			# Project
+    │   └── MCP401X-Interface 				# Project
     │   	├── Core         
-    │   	│   ├── Inc 				# Header files
-    │   	│   ├── Src 				# Source files 
+    │   	│   ├── Inc 					# Header files
+    │   	│   ├── Src 					# Source files 
     │   	│   └── Startup
     │   	├── Debug 					# Binary files 
 	│   	├── Drivers 
@@ -43,7 +43,7 @@ I have used the internal pullups of STM32 for I2C
 	│   	├── .mxproject 
 	│   	├── .project 
 	│   	├── MCP401X-Interface Debug.launch 
-	│   	├── MCP401X-Interface.ioc 	# CubeMX file
+	│   	├── MCP401X-Interface.ioc 			# CubeMX file
 	│   	└── STM32L433RCTXP_FLASH.ld		
 	├── examples                		 	
 	│   └── main.c 						# example main.c
