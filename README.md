@@ -8,7 +8,8 @@ Library and example to interface MCP401X series (MCP4017/4018/4019) digital pote
 
 ### Connection Diagram
 
-Tested on [NUCLEO-L433RC-P](https://www.st.com/en/evaluation-tools/nucleo-l433rc-p.html) (STM32L433RCT6PU) on MCP4017 and MCP4018. Vcc = 3.3V
+Tested with [NUCLEO-L433RC-P](https://www.st.com/en/evaluation-tools/nucleo-l433rc-p.html) (STM32L433RCT6PU) on MCP4017 and MCP4018. 
+- Vcc = 3.3V
 
 |Sl No |      STM32                    |  MCP401X    |
 |------|-------------------------------|-------------|                                   
@@ -25,6 +26,32 @@ MCP4017 and MCP4019 are Rheostats, MCP4018 is a Potentiometer. Check [Datasheet]
 I have used the internal pullups of STM32 for I2C
 
 ![](Images/pullup.png)
+
+## Folder Structure
+
+STM32CubeIDE Workspace
+
+.
+├── Images                   		
+├── Workspace    					 
+│   └── MCP401X-Interface    		# Project
+│   	├── Core     				
+│   	│ 	├── Inc 				# Header files 
+│   	│ 	├── Src 				# Source files 
+│   	│ 	└── Startup
+│   	├── Debug  					# Binary files 
+│   	├── Drivers 
+│   	├── .cproject 
+│   	├── .mxproject 
+│   	├── .project 
+│   	├── MCP401X-Interface Debug.launch 
+│   	├── MCP401X-Interface.ioc 	# CubeMX file
+│ 		└── STM32L433RCTXP_FLASH.ld		
+├── examples                		
+├── LICENSE              			
+├── README.md             			
+├── mcp401x.c  						# Library source file 
+└── mcp401x.h  						# Library header file 
 
 ## Usage
 
