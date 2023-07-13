@@ -31,26 +31,26 @@ I have used the internal pullups of STM32 for I2C
 
     .
     ├── Images
-    ├── Workspace          				# STM32CubeIDE Workspace          
-    │   └── MCP401X-Interface    		# Project
+    ├── Workspace          							# STM32CubeIDE Workspace          
+    │   └── MCP401X-Interface						# Project
     │   	├── Core         
-    │   	│	├── Inc 				# Header files
-    │   	│	├── Src 				# Source files 
+    │   	│	├── Inc 							# Header files
+    │   	│	├── Src 							# Source files 
     │   	│ 	└── Startup
-    │   	├── Debug  					# Binary files 
+    │   	├── Debug  								# Binary files 
 	│   	├── Drivers 
 	│   	├── .cproject 
 	│   	├── .mxproject 
 	│   	├── .project 
 	│   	├── MCP401X-Interface Debug.launch 
-	│   	├── MCP401X-Interface.ioc 	# CubeMX file
-	│ 		└── STM32L433RCTXP_FLASH.ld		
+	│   	├── MCP401X-Interface.ioc				# CubeMX file
+	│		└── STM32L433RCTXP_FLASH.ld		
 	├── examples                		 	
-	│   └── main.c    					# example main.c
+	│   └── main.c    								# example main.c
 	├── LICENSE              			
 	├── README.md             			
-	├── mcp401x.c  						# Library source file 
-	└── mcp401x.h  						# Library header file 
+	├── mcp401x.c  									# Library source file 
+	└── mcp401x.h  									# Library header file 
    
 
 ## Usage
