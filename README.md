@@ -37,26 +37,26 @@ Include the header file #include "mcp401x.h" in main.c
 ### Usage example of main.c
 
 ```c
-	uint8_t stepBuf[3] = {0, 64, 127};
-	uint8_t step = 0;
-	uint32_t Rwb;
+uint8_t stepBuf[3] = {0, 64, 127};
+uint8_t step = 0;
+uint32_t Rwb;
 
-	SetStep(&stepBuf[0]);			//Set Min value Resistance
-	step = ReadStep();
-	//	HAL_Delay(5000);
+SetStep(&stepBuf[0]);			//Set Min value Resistance
+step = ReadStep();
+//	HAL_Delay(5000);
 
-	SetStep(&stepBuf[1]);			//Set Middle value Resistance
-	step = ReadStep();
-	//  HAL_Delay(5000);
+SetStep(&stepBuf[1]);			//Set Middle value Resistance
+step = ReadStep();
+//  HAL_Delay(5000);
 
-	SetStep(&stepBuf[2]);			//Set Max value Resistance
-	step = ReadStep();
-	//	HAL_Delay(5000);
+SetStep(&stepBuf[2]);			//Set Max value Resistance
+step = ReadStep();
+//	HAL_Delay(5000);
 
-	SetResistance(2500);			//Set Resistance value 2.5K
-	step = ReadStep();				//Read the step value
-	Rwb = ReadResistance();			//Read the Resistance value from chip
-	//	HAL_Delay(5000);
+SetResistance(2500);			//Set Resistance value 2.5K
+step = ReadStep();				//Read the step value
+Rwb = ReadResistance();			//Read the Resistance value from chip
+//	HAL_Delay(5000);
 ```
 
 If you are using ST-Link/J-link to debug, use break points to see the value change, otherwise uncomment the HAL_Delay() function. 
@@ -76,4 +76,59 @@ Change Resistance value according to the MCP401X IC used. If a 5K Pot is being u
 
 ```c
 #define MAXRESISTANCE    	10000     		//Change here acc to Value of MCP401X
+```
+
+### mcp401x.c
+
+Change Handletype acc to I2C used. Here I am using I2C1.
+
+```c
+extern I2C_HandleTypeDef hi2c1;
+```
+
+Function used to set step value. Change handletype acc to I2C used. If needed use custom timeout instead of HAL_MAX_DELAY
+
+```c
+/**
+  * @brief  Set step value. Range 0 - 127
+  * @retval None
+  */
+void SetStep(uint8_t *step)
+{
+	HAL_I2C_Master_Transmit(&hi2c1, MCP401XADDR, step, 1, HAL_MAX_DELAY);
+}
+```
+
+Function used to read step value. Change handletype acc to I2C used. If needed use custom timeout instead of HAL_MAX_DELAY
+
+```c
+/**
+  * @brief  Read step value. Range 0 - 127
+  * @retval int
+  */
+int ReadStep(void)
+{
+	uint8_t tempBuf[1] = {0};
+	HAL_I2C_Master_Receive(&hi2c1, MCP401XADDR, tempBuf, 1, HAL_MAX_DELAY);
+	return *tempBuf;
+}
+```
+
+Function used to set Resistance value. 
+
+```c
+/**
+  * @brief  Set Resistance value, Rwb.
+  * @retval None
+  */
+void SetResistance(uint32_t Rwb)
+{
+	uint8_t step = (((MAXSTEP * Rwb) / MAXRESISTANCE) + (Rwb / 1000));;
+	if(step > 127)
+	{
+		step = 127;
+	}
+	SetStep(&step);
+}
+
 ```
