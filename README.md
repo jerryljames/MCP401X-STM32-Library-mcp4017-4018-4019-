@@ -2,13 +2,13 @@
 
 Library and example to interface MCP401X series (MCP4017/4018/4019) digital potentiometers
 
-![](Img.jpg)
+![](Images/Img.jpg)
 
 ## Getting Started
 
 ### Connection Diagram
 
-Tested on [NUCLEO-L433RC-P](https://www.st.com/en/evaluation-tools/nucleo-l433rc-p.html) with STM32L433RCT6PU IC. Vcc = 3.3V
+Tested on [NUCLEO-L433RC-P](https://www.st.com/en/evaluation-tools/nucleo-l433rc-p.html) (STM32L433RCT6PU) on MCP4017 and MCP4018. Vcc = 3.3V
 
 |Sl No |      STM32                    |  MCP401X    |
 |------|-------------------------------|-------------|                                   
@@ -20,7 +20,11 @@ Tested on [NUCLEO-L433RC-P](https://www.st.com/en/evaluation-tools/nucleo-l433rc
 Measuring Resistance will depend on which MCP401X IC is being used. 
 MCP4017 and MCP4019 are Rheostats, MCP4018 is a Potentiometer. Check [Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/22147a.pdf) for pinouts.
 
-![](STM32_Connection.png)
+![](Images/STM32_Connection.png)
+
+I have used the internal pullups of STM32 for I2C
+
+![](Images/pullup.png)
 
 ## Usage
 
@@ -63,10 +67,11 @@ If you are using ST-Link/J-link to debug, use break points to see the value chan
 
 ### mcp401x.h
 
+I am using the STM32L4 series,
 ```c
 #include "stm32l4xx_hal.h"					//Change here acc to STM32 series used
 ```
-If another STM32 series is used, include the appropriate header. For example if F1 series (like STM32F103C8T6) is used, include 
+If another STM32 series IC is used, include the appropriate header. For example if F1 series (like STM32F103C8T6) is used, replace with below 
 
 ```c
 #include "stm32f1xx_hal.h"					//Change here acc to STM32 series used
@@ -132,3 +137,10 @@ void SetResistance(uint32_t Rwb)
 }
 
 ```
+
+## Links to Hardware used
+
+- NUCLEO-L433RC-P Board - https://www.st.com/en/evaluation-tools/nucleo-l433rc-p.html
+- SC70-6 TO DIP-6 SMT Adapter - https://www.digikey.com/en/products/detail/chip-quik-inc/PA0087/5014718
+- MCP4017T-502E/LT - https://www.digikey.com/en/products/detail/microchip-technology/MCP4017T-502E-LT/2059659
+- MCP4018T-103E/LT - https://www.digikey.com/en/products/detail/microchip-technology/MCP4018T-103E-LT/2059661
