@@ -29,17 +29,15 @@ I have used the internal pullups of STM32 for I2C
 
 ## Folder Structure
 
-STM32CubeIDE Workspace
-
-.
-	├── Images                   		
-	├── Workspace    					 
-	│   └── MCP401X-Interface    		# Project
-	│   	├── Core     				
-	│   	│ 	├── Inc 				# Header files 
-	│   	│ 	├── Src 				# Source files 
-	│   	│ 	└── Startup
-	│   	├── Debug  					# Binary files 
+    .
+    ├── Images
+    ├── Workspace          				# STM32CubeIDE Workspace          
+    │   └── MCP401X-Interface    		# Project
+    │   	├── Core         
+    │   	│	├── Inc 				# Header files
+    │   	│	├── Src 				# Source files 
+    │   	│ 	└── Startup
+    │   	├── Debug  					# Binary files 
 	│   	├── Drivers 
 	│   	├── .cproject 
 	│   	├── .mxproject 
@@ -47,11 +45,13 @@ STM32CubeIDE Workspace
 	│   	├── MCP401X-Interface Debug.launch 
 	│   	├── MCP401X-Interface.ioc 	# CubeMX file
 	│ 		└── STM32L433RCTXP_FLASH.ld		
-	├── examples                		
+	├── examples                		 	
+	│   └── main.c    					# example main.c
 	├── LICENSE              			
 	├── README.md             			
 	├── mcp401x.c  						# Library source file 
 	└── mcp401x.h  						# Library header file 
+   
 
 ## Usage
 
