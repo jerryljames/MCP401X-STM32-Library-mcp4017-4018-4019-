@@ -55,7 +55,7 @@ int ReadStep(void)
   */
 void SetResistance(uint32_t Rwb)
 {
-	uint8_t step = (((MAXSTEP * Rwb) / MAXRESISTANCE) + (Rwb / 1000));;
+	uint8_t step = (((MAXSTEP * Rwb) / MAXRESISTANCE) + (Rwb / 1000));
 	if(step > 127)
 	{
 		step = 127;
@@ -70,7 +70,7 @@ void SetResistance(uint32_t Rwb)
 int ReadResistance(void)
 {
 	uint8_t step = ReadStep();
-	uint32_t Rwb = (1000 * MAXRESISTANCE * step ) / ((1000 * MAXSTEP) + MAXRESISTANCE);;
+	uint32_t Rwb = (1000 * MAXRESISTANCE * step ) / ((1000 * MAXSTEP) + MAXRESISTANCE);
 	return Rwb;
 }
 
