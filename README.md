@@ -155,7 +155,7 @@ Function used to set Resistance value.
   */
 void SetResistance(uint32_t Rwb)
 {
-	uint8_t step = (((MAXSTEP * Rwb) / MAXRESISTANCE) + (Rwb / 1000));;
+	uint8_t step = (((MAXSTEP * Rwb) / MAXRESISTANCE) + (Rwb / 1000));
 	if(step > 127)
 	{
 		step = 127;
